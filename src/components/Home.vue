@@ -36,7 +36,7 @@
     </div>
 </template>
 <script>
-import filmHeader from "./filmHeader.vue"
+import filmHeader from "./film/filmHeader"
 export default {
     components:{
         "filmheader":filmHeader,
