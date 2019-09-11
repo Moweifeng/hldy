@@ -1,7 +1,7 @@
 <template>
     <div>
             <div class="homeHeader">
-                <div class="landmark">
+                <div class="landmark" @click="seat">
                     <span>广州</span>
                     <img src="../../img/icon/center_drop_icon.png">
                 </div>
@@ -11,8 +11,10 @@
                 </div>
             </div>
         <div>
+            <transition name="film">
             <film :carouselImgs="carouselImgs" v-if="isdisplay==true"></film>
             <cinema v-else :cinemalist="cinemalist"></cinema>
+            </transition>
         </div>
     </div>
 </template>
@@ -27,6 +29,7 @@ export default {
             isdisplay:true,
         }
     },
+    props:['isPosition'],
     components:{
         "film":Film,
         "cinema":Cinema,
@@ -59,6 +62,15 @@ export default {
                 film.className ="";
                 this.isdisplay=false;
             }
+        },
+        seat(){
+            // if(this.isPosition==false){
+            //     this.isPosition=true;
+            // }else{
+            //     this.isPosition=false;
+            // }
+            this.$emit('changePosition')
+            // this.$router.push('/')
         },
     },
 }
@@ -99,4 +111,24 @@ export default {
  div.isdisplay{
      display:none;
  }
+ .film-enter-active {
+    transition: all .5s;
+    transform: translateX(100%);
+}
+.d1-leave-active{
+    transition: all .5s;
+    transform: translateX(0%);
+}
+.film-enter{
+    transform: translateX(100%);
+}
+.film-enter-to{
+    transform: translateX(0%);
+}
+.film-leave{
+    transform: translateX(100%);
+}
+.film-leave-to{
+    transform: translateX(0%);
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
   <div class="login">
     <mt-header fixed class="header">
-      <router-link to="javascript:;" slot="left" class="iconfont icon-zuo"></router-link>
-      <router-link to="javascript:;" slot="left">登录注册</router-link>
+      <router-link to="/" slot="left" class="iconfont icon-zuo" @click="isLogin"></router-link>
+      <router-link to="/" slot="left">登录注册</router-link>
     </mt-header>
     <p>请先进行登录，未注册的手机号会自动为您注册</p>
     <div class="phone-btn">
@@ -13,7 +13,7 @@
     <mt-button disabled class="login-code">登录验证</mt-button>
     <div>
       <mt-checklist></mt-checklist>
-      <router-link to>《万达电影用户协议》</router-link>
+      <router-link to="/">《万达电影用户协议》</router-link>
     </div>
     <div class="login-icon">
         <div><img src="">微博登录</div>
@@ -26,9 +26,16 @@
 export default {
   data() {
     return {
-      value: "1"
+      uphone:13345689752,
+      m:1,
+
     };
-  }
+  },
+  methods:{
+    isLogin(){
+      this.$emit('isLogin')
+    }
+  },
 };
 </script>
 <style scoped>
@@ -61,12 +68,6 @@ export default {
 }
 .login-code {
   width: 95%;
-}
-.mint-field-core {
-  background-color: #aaa;
-}
-.phone-btn .mint-cell-value .mint-field-core {
-  background-color: gray !important;
 }
 .login-icon{
     display: flex;

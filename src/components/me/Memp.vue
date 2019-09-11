@@ -1,75 +1,99 @@
 <template>
-    <div>
-        <div class="header">
-            <div class="header-item-icon">
-                <img src="../img/icon/usernotice.png" class="icon1" @click="info">
-                <img src="../img/icon/ic_edit.png" class="icon2" @click="meEdit">
-            </div>
-            <div class="header-item">
-                <div class="header-headItem">
-                    <div class="headItem-h">
-                        <img src="../img/icon/pic_me_portrait_default.png" class="headItem-icon1">
-                        <img src="../img/icon/ic_crown.png" class="headItem-icon2">
-                        
-                        <div class="headItem-emp1"></div>
-                        <div class="headItem-empText">&nbsp;万影迷注册会员</div>
-                        <router-link class="headItem-emp2" v-text="grow" to></router-link>
+    <div class="me-user">
+        <transition name="tran">
+            <div class="me-width" v-if="isLogin">
+                <div class="header">
+                    <div class="header-item-icon">
+                        <img src="../../img/icon/usernotice.png" class="icon1" @click="info">
+                        <img src="../../img/icon/ic_edit.png" class="icon2" @click="meEdit">
                     </div>
-                    <div class="headItem-p">
-                        <p class="headItem-p">万达影迷</p>
-                        <p v-text="phone"></p>
+                    <div class="header-item">
+                        <div class="header-headItem">
+                            <div class="headItem-h">
+                                <img src="../../img/icon/pic_me_portrait_default.png" class="headItem-icon1">
+                                <img src="../../img/icon/ic_crown.png" class="headItem-icon2">
+                                
+                                <div class="headItem-emp1"></div>
+                                <div class="headItem-empText">&nbsp;乐影迷注册会员</div>
+                                <span class="headItem-emp2" v-text="grow"></span>
+                            </div>
+                            <div class="headItem-p">
+                                <p class="headItem-p">欢乐影迷</p>
+                                <p v-text="phone"></p>
+                            </div>
+                            <div class="headItem-right"  @click="login"><img src="../../img/icon/ic_right_arrow.png"></div>
+                        </div>
                     </div>
-                    <div class="headItem-right"><img src="../img/icon/ic_right_arrow.png"></div>
+                </div>
+                <div class="me-list1">
+                    <div><img src="../../img/icon/ic_order.png">我的订单</div>
+                    <div><img src="../../img/icon/ic_wallet.png">我的钱包</div>
+                </div>
+                <div class="me-list2">
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_badge.png" slot="icon">
+                        <span class="list2title">我的勋章</span>
+                    </mt-cell>
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_qr.png" slot="icon">
+                        <span class="list2title">会员码</span>
+                    </mt-cell>
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_member.png" slot="icon">
+                        <span class="list2title">会员手册</span>
+                    </mt-cell>
+                    <mt-cell is-link title="" class="list2Cell">
+                        <img src="../../img/icon/ic_coin.png" slot="icon">
+                        <span class="list2title">我的积分</span>
+                        <span>0积分</span>
+                    </mt-cell>
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_film.png" slot="icon">
+                        <span class="list2title">我的影单</span>
+                    </mt-cell>
+                    <mt-cell is-link title="" class="list2Cell">
+                        <img src="../../img/icon/ic_prize.png" slot="icon">
+                        <span class="list2title">我的奖品</span>
+                    </mt-cell>
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_service.png" slot="icon">
+                        <span class="list2title">客服中心</span>
+                    </mt-cell>
+                    <mt-cell is-link title="">
+                        <img src="../../img/icon/ic_badge.png" slot="icon">
+                        <span class="list2title">设置</span>
+                    </mt-cell>
                 </div>
             </div>
-        </div>
-        <div class="me-list1">
-            <div><img src="../img/icon/ic_order.png">我的订单</div>
-            <div><img src="../img/icon/ic_wallet.png">我的钱包</div>
-        </div>
-        <div class="me-list2">
-            <mt-cell is-link title="我的勋章">
-                <img src="../img/icon/ic_badge.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="会员码">
-                <img src="../img/icon/ic_qr.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="会员手册">
-                <img src="../img/icon/ic_member.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="我的积分" class="list2Cell">
-                <img src="../img/icon/ic_coin.png" slot="icon">
-                <span>0积分</span>
-            </mt-cell>
-            <mt-cell is-link title="我的影单">
-                <img src="../img/icon/ic_film.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="我的奖品" class="list2Cell">
-                <img src="../img/icon/ic_prize.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="客服中心">
-                <img src="../img/icon/ic_service.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="我的勋章">
-                <img src="../img/icon/ic_setting.png" slot="icon">
-            </mt-cell>
-            <mt-cell is-link title="设置">
-                <img src="../img/icon/ic_badge.png" slot="icon">
-            </mt-cell>
-        </div>
+            <div class="me-width" v-else>
+                <login></login>
+            </div>
+    </transition>
     </div>
 </template>
 <script>
+import Login from "./Login"
 export default {
     data(){
         return {
             grow:"还需195成长值升级",
             phone:13123456789,
+            isLogin:false,
         }
+    },
+    components:{
+        "login":Login,
     },
     methods:{
         info(){
 
+        },
+        meEdit(){
+
+        },
+        login(){
+            this.isLogin=!this.isLogin;
+            console.log(this.isLogin);
         },
     },
 }
@@ -171,6 +195,20 @@ export default {
     }
     .list2Cell span{
         font-size:12px;
+    }
+    .me-user{
+        display: flex;
+        width: 200%;
+        
+    }
+    .me-width{
+        width: 50%;
+    }
+    .tran-enter-active, .tran-leave-active{
+        transition: all 1s;
+    }
+    .tran-enter{
+        transform: translateX(100%)
     }
 </style>
 <style>

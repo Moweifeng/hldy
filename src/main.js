@@ -3,9 +3,12 @@ import App from './App.vue'
 import router from './router'
 import MintUI from 'mint-ui'
 import './dist/css/swiper.css'
+import BScroll from 'better-scroll'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)　　
 Vue.use(MintUI)
+//Vue.use(BScroll)
+Vue.prototype.BScroll = BScroll;
 import 'mint-ui/lib/style.css'
 import "./fonts/iconfont.css"
 import axios from "axios"

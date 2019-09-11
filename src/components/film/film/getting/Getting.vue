@@ -1,6 +1,5 @@
 <template>
     <div>
-        <router-link to="#">
             <mt-cell v-for="(item,index) of lists" :key="index" class="gettingCell">
                 <img :src="'http://127.0.0.1:8080/'+item.img_url" class="gettingImg" slot="icon">
                 <div class="filmListText">
@@ -16,14 +15,15 @@
                     <p v-text="item.type"></p>
                     <p v-text="item.profile"></p>
                     <div class="film-type-icon">
-                    <p :class="Math.random()<0.5?'icon-2d':'icon-3d'" class="iconfont"></p>
-                    <p :class="Math.random()<0.4?'icon-imax':
-                        Math.random<0.8?'icon-jumu':''" class="iconfont"></p>
+                    <p :class="Math.random()<0.4?'icon-2d'
+                        :Math.random()<0.8?'icon-3d':'icon-2d icon-3d'" class="iconfont"></p>
+                    <p :class="Math.random()<0.3?'icon-imax'
+                        :Math.random<0.6?'icon-jumu'
+                        :Math.random()<0.9?'ico-imax icon-jumu':''" class="iconfont"></p>
                     </div>
                     <mt-button class="getfilm" :disabled="Math.random()<0.2?disabled=true:disabled=false" v-text="disabled?'预售':'购票'" ></mt-button>
                 </div>
             </mt-cell>
-        </router-link>
     </div>
 </template>
 <script>
@@ -70,9 +70,10 @@ export default {
     }
     div.film-type-icon{
         display: flex;
+        height: 20px;
     }
     p.iconfont{
-        font-size:16px;
+        font-size:18px;
         margin-bottom:0; 
     }
     .getfilm{

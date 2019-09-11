@@ -11,8 +11,12 @@
         <div>
             <div>
                 <mt-navbar v-model="selected">
-                    <mt-tab-item id="getting">正在热映</mt-tab-item>
-                    <mt-tab-item id="upcoming">即将上映</mt-tab-item>
+                    <mt-tab-item id="getting">
+                        <mt-button>正在热映</mt-button>
+                        </mt-tab-item>
+                    <mt-tab-item id="upcoming">
+                        <mt-button>即将上映</mt-button>
+                        </mt-tab-item>
                 </mt-navbar>
                 <!-- tab-container -->
                 <mt-tab-container v-model="selected" swipeable>
