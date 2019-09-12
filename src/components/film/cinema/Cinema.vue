@@ -3,7 +3,7 @@
         <router-link to="#">
             <mt-cell v-for="(item,index) of cinemalist" :key="index">
                 <div class="cinematxt">
-                    <p class="cinematitle"v-text="item.title" ></p>
+                    <p class="cinematitle" v-text="item.title" ></p>
                     <p class="cinemaCount" v-text="item.location"></p>
                 </div>
                     <span v-text="item.distance" class="cinemaspan"></span>
