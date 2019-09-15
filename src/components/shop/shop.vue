@@ -4,7 +4,7 @@
             <span>广州欢乐影城万胜围店</span>
             <img src="../../img/icon/center_drop_icon.png" class="shop-icon">
         </div>
-    <mt-swipe :auto="2000" class="shop-banner">
+    <mt-swipe :auto="3000" class="shop-banner">
         <mt-swipe-item>
             <img src="../../img/5.jpg" class="banner-img">
         </mt-swipe-item>
@@ -40,6 +40,7 @@ export default {
         height: 200px;
     }
     .banner-img{
-        height: 200px;
+        width: 100%;
+        height: 100%;
     }
 </style>
