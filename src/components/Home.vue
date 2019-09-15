@@ -6,8 +6,10 @@
                     <filmheader :isPosition="isPosition" @changePosition="changePosition"></filmheader>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="activity">
+                    <activity></activity>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="shop">
+                    <shop></shop>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="me">
                     <memp></memp>
@@ -40,12 +42,16 @@
 <script>
 import filmHeader from "./film/filmHeader"
 import Position from "./film/position"
+import Activity from "./activity/activity"
 import Memp from "./me/Memp"
+import Shop from "./shop/shop"
 export default {
     components:{
         "filmheader":filmHeader,
         "position":Position,
+        "activity":Activity,
         "memp":Memp,
+        "shop":Shop
     },
     data(){
         return{
