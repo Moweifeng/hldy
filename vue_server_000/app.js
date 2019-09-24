@@ -11,7 +11,7 @@ var pool = mysql.createPool({
     password:"",
     port:3306,
     connectionLimit:20,
-    database:"xz"
+    database:"hldy"
 })
 //4 创建web服务器监听 8080 端口
 var server=express();
@@ -23,7 +23,7 @@ server.use(cors({
 }));
 //配置session会话
 server.use(session({
-    secret:"xz",
+    secret:"hldy",
     resave:true,
     rolling:true,
     saveUninitialized:true,
@@ -33,6 +33,58 @@ server.use(session({
 }))
 //7 配置静态目录
 server.use(express.static("public"))
+
+//轮播图
+server.get("/carousel",(req,res)=>{
+    var sql = "SELECT * FROM hldy_index_carousel";
+    pool.query(sql,[],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    });
+})
+
+//电影院列表
+// 1.接收客户请求  /product GET
+server.get("/cinemalist",(req,res)=>{
+    // 2.接收客户请求数据
+    //     pno 页码   pageSize 页大小
+        var pno = req.query.pno;
+        var ps = req.query.pageSize;
+    // 3.如果客户没有请示数据设置默认数据
+        if(!pno){
+            pno = 1;
+        }
+        if(!ps){
+            ps = 4;
+        }
+        //创建sql语句
+        var sql = "SELECT lid,lname,price,img_url FROM xz_laptop LIMIT ?,?";
+        var offset = (pno-1)*ps;//起始记录数
+        pool.query(sql,[offset,ps],(err,result)=>{
+            if(err) throw err;
+            //发送sql语句
+            //获取返回结果发送给客户端
+            res.send({code:1,msg:"查询成功",data:result});
+        })
+    })
+//
+server.get("/upcoming",(req,res)=>{
+    var sql = "SELECT * hldy_index_details";
+    pool.query(sql,[],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    });
+});
+
+//电影列表
+server.get("/filmList",(req,res)=>{
+    var sql = "SELECT * hldy_index_product";
+    pool.query(sql,[],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    });
+});
+
 //功能一.完成用户登录
 //启动服务器app.js/启动数据库
 //打开浏览器

@@ -34,7 +34,7 @@
       }
     },
     created(){
-      this.loaduplist()
+      //this.loaduplist()
     },
     methods:{
       loaduplist(){

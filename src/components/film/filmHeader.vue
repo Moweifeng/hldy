@@ -27,6 +27,7 @@ export default {
             carouselImgs:[],
             cinemalist:[],
             isdisplay:true,
+            pno:0   //页码
         }
     },
     props:['isPosition'],
@@ -35,22 +36,38 @@ export default {
         "cinema":Cinema,
     },
         created(){
-        this.loadCarousel();
-        this.loadCinema();
+        //this.loadCarousel();
+        this.$nextTick(()=>{
+            this.loadCinema();
+        })
     },
     methods:{
+        loadCinema(){
+            this.pno++; //页码+1 
+            var count = 10;
+            var start = (this.pno-1)*count;
+            var url = `movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=${start}&count=${count}`;
+            // console.log(url);
+            var obj = {start:start,count:count};
+            this.axios.get(url)
+            .then(res=>{
+                var rows = this.cinemalist.concat(res.data.data);
+                this.cinemalist = rows;
+                console.log(res)
+            })
+        },
         loadCarousel(){
             var url = "carousel";
             this.axios.get(url).then(res=>{
                 this.carouselImgs = res.data;
             });
         },
-        loadCinema(){
-            var url = "cinemalist";
-            this.axios.get(url).then(res=>{
-                this.cinemalist = res.data;
-            });
-        },
+        // loadCinema(){
+        //     var url = "cinemalist";
+        //     this.axios.get(url).then(res=>{
+        //         this.cinemalist = res.data;
+        //     });
+        // },
         selected(e){
             var film = document.getElementById("film");
             var cinema = document.getElementById("cinema");

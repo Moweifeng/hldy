@@ -10,14 +10,31 @@
             <mt-button class="search-btn">搜索</mt-button>
         </div>
         <p>当前定位城市</p>
-    </div>
+        <van-index-bar>
+        <van-index-anchor index="A" />
+        <van-cell title="文本" />
+        <van-cell title="文本" />
+        <van-cell title="文本" />
+        <van-index-anchor index="B" />
+        <van-cell title="文本" />
+        <van-cell title="文本" />
+        <van-cell title="文本" />
+        </van-index-bar>
+        </div>
 </template>
 <script>
+import { IndexBar, IndexAnchor,Cell } from 'vant';
 export default {
     data(){
         return{
             value:"",
+            cityList:[]
         }
+    },
+    components:{
+        [IndexBar.name]:IndexBar,
+        [IndexAnchor.name]:IndexAnchor,
+        [Cell.name]:Cell
     },
     // props:['isPosition'],
     methods:{

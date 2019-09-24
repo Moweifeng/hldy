@@ -12,15 +12,17 @@ Vue.prototype.BScroll = BScroll;
 import 'mint-ui/lib/style.css'
 import "./fonts/iconfont.css"
 import axios from "axios"
+import 'vant/lib/index.css';
 //配置请求时保存session信息
-axios.defaults.withCredentials=true;
+// axios.defaults.withCredentials=true;
 //配置请求基础路径
-axios.defaults.baseURL="http://127.0.0.1:8080/"
+//axios.defaults.baseURL="http://127.0.0.1:8080/"
 // 注册axios
 Vue.prototype.axios = axios;
+axios.defaults.baseURL = 'http://api.douban.com/v2/'
 Vue.config.productionTip = false
     //5: 设置请求的根路径 
-    //Vue.http.options.root = "http://127.0.0.1/vue_ser/";
+    // Vue.http.options.root = "http://127.0.0.1/vue_ser/";
     //6:全局设置post 时候表音的数据组织格式为 application/x-www-form-urlencoded
     //Vue.http.options.emulateJSON = true;
     // 导入 MUI 的样式表， 和 Bootstrap 用法没有差别

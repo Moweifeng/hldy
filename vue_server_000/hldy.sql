@@ -23,6 +23,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `hldy_cityList`
+--
+
+CREATE TABLE `hldy_cityList` (
+  `alphabet` varchar(500) DEFAULT NULL,
+  `cityList` MEDIUMTEXT(500000)  DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `hldy_index_carousel` (`alphabet`, `cityList`) VALUES
+()
+
+--
 -- 表的结构 `hldy_index_carousel`
 --
 
