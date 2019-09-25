@@ -2,11 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import MintUI from 'mint-ui'
-import './dist/css/swiper.css'
 import BScroll from 'better-scroll'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 Vue.use(VueAwesomeSwiper)　　
 Vue.use(MintUI)
+import VueJsonp from 'vue-jsonp'
+Vue.use(VueJsonp)
 //Vue.use(BScroll)
 Vue.prototype.BScroll = BScroll;
 import 'mint-ui/lib/style.css'
@@ -19,7 +20,7 @@ import 'vant/lib/index.css';
 //axios.defaults.baseURL="http://127.0.0.1:8080/"
 // 注册axios
 Vue.prototype.axios = axios;
-axios.defaults.baseURL = 'http://api.douban.com/v2/'
+// axios.defaults.baseURL = 'http://api.douban.com/v2/'
 Vue.config.productionTip = false
     //5: 设置请求的根路径 
     // Vue.http.options.root = "http://127.0.0.1/vue_ser/";

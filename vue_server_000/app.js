@@ -42,6 +42,13 @@ server.get("/carousel",(req,res)=>{
         res.send({code:1,msg:"查询成功",data:result});
     });
 })
+server.get("/cinema",(req,res)=>{
+    var sql = "SELECT * FROM hldy_index_cinema";
+    pool.query(sql,[],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    });
+})
 
 //电影院列表
 // 1.接收客户请求  /product GET

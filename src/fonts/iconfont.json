@@ -1,0 +1,58 @@
+{
+  "id": "1379855",
+  "name": "wddy",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "609244",
+      "name": "中国巨幕",
+      "font_class": "jumu",
+      "unicode": "e71a",
+      "unicode_decimal": 59162
+    },
+    {
+      "icon_id": "5203327",
+      "name": "方向-左",
+      "font_class": "zuo",
+      "unicode": "e641",
+      "unicode_decimal": 58945
+    },
+    {
+      "icon_id": "6323701",
+      "name": "爱心",
+      "font_class": "nolove",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "10814061",
+      "name": "视觉-2D",
+      "font_class": "2d",
+      "unicode": "e74b",
+      "unicode_decimal": 59211
+    },
+    {
+      "icon_id": "10814097",
+      "name": "视觉-3D",
+      "font_class": "3d",
+      "unicode": "e74c",
+      "unicode_decimal": 59212
+    },
+    {
+      "icon_id": "10814099",
+      "name": "IMAX",
+      "font_class": "imax",
+      "unicode": "e74d",
+      "unicode_decimal": 59213
+    },
+    {
+      "icon_id": "11068704",
+      "name": "爱心",
+      "font_class": "love",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    }
+  ]
+}

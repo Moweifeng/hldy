@@ -15,6 +15,21 @@
             <img src="../../img/7.jpg" class="banner-img">
         </mt-swipe-item>
     </mt-swipe>
+    <div class="setMeals" v-for="item in 3">
+        <div class="setMealTitle">
+            <p>卖品套餐</p>
+            <p>查看全部</p>
+        </div>
+        <div class="setMealList" >
+            <div class="setMeal">
+                <img src="./../../img/17.jpg">
+                <div>
+                    <span>￥49</span>
+                    <img src="./../../img/icon/ic_add_to_cart.png">
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </template>
 <script>
@@ -42,5 +57,10 @@ export default {
     .banner-img{
         width: 100%;
         height: 100%;
+    }
+    .setMealTitle{
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
     }
 </style>

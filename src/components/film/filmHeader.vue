@@ -36,30 +36,23 @@ export default {
         "cinema":Cinema,
     },
         created(){
-        //this.loadCarousel();
+        this.loadCarousel();
         this.$nextTick(()=>{
             this.loadCinema();
         })
     },
     methods:{
         loadCinema(){
-            this.pno++; //页码+1 
-            var count = 10;
-            var start = (this.pno-1)*count;
-            var url = `movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a&start=${start}&count=${count}`;
-            // console.log(url);
-            var obj = {start:start,count:count};
-            this.axios.get(url)
-            .then(res=>{
-                var rows = this.cinemalist.concat(res.data.data);
-                this.cinemalist = rows;
-                console.log(res)
-            })
+            var url = "http://127.0.0.1:8080/cinema";
+            this.axios.get(url).then(res=>{
+                this.cinemalist = res.data.data;
+            });
         },
         loadCarousel(){
-            var url = "carousel";
+            var url = " http://127.0.0.1:8080/carousel";
             this.axios.get(url).then(res=>{
-                this.carouselImgs = res.data;
+                this.carouselImgs = res.data.data;
+                //console.log(this.carouselImgs)
             });
         },
         // loadCinema(){
@@ -148,4 +141,9 @@ export default {
 .film-leave-to{
     transform: translateX(0%);
 }
+</style>
+<style>
+    .homeNav .mint-navbar .mint-tab-item{
+        padding: 3px 0;
+    }
 </style>

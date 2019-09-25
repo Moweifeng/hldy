@@ -10,7 +10,7 @@
         </swiper>
         <div>
             <div>
-                <mt-navbar v-model="selected">
+                <mt-navbar v-model="selected" class="indexFilmList">
                     <mt-tab-item id="getting">
                         <mt-button>正在热映</mt-button>
                         </mt-tab-item>
@@ -64,6 +64,15 @@ export default {
 </script>
 <style scoped>
     .carouselImg{
+        width: 100%;
+    }
+</style>
+<style>
+    .swiper-wrapper{
+        display: flex;
+        width: 600%;
+    }
+    .indexFilmList .mint-button--normal{
         width: 100%;
     }
 </style>
