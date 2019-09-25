@@ -15,26 +15,43 @@
             <span>影游互动</span>
             </div>
         </div>
-        <mt-cell v-for="(item,index) of activityList" :key="index">
-            <router-link :to="item.url">
-                <img :src="item.img">
-                <p v-text="item.title"></p>
-                <div class="srcTxt">
-                <span v-text="oddTime>7?oddTime+'天后结束':'仅剩'+oddTime+'天'" class="iconfont icon-time"></span>
-                <span v-text="item.Pnumber+'人关注'" class="iconfont iocn-yanjing">123</span>
-                </div>
-            </router-link>
-        </mt-cell>
+        <div>
+            <mt-cell v-for="(item,index) of activityList" :key="index">
+                <router-link :to="item.url">
+                    <img :src="item.img">
+                    <p v-text="item.title"></p>
+                    <div class="srcTxt">
+                    <span v-text="Math.ceil(parseInt((new Date(item.endTime)-new Date())/(1000*60*60*24)))>7
+                    ?Math.ceil(parseInt((new Date(item.endTime)-new Date())/(1000*60*60*24)))+'天后结束'
+                    :'仅剩'+Math.ceil(parseInt((new Date(item.endTime)-new Date())/(1000*60*60*24)))+'天'" class="iconfont icon-time"></span>
+                    <span v-text="item.Pnumber+'人关注'" class="iconfont iocn-yanjing">123</span>
+                    </div>
+                </router-link>
+            </mt-cell>
+        </div>
     </div>
 </template>
 <script>
 export default {
     data(){
         return{
-            oddTime:Math.ceil(parseInt(new Date(item.endTime)-new Date()/(1000*60*60*24))),
-            activityList:[
+            //oddTime:Math.ceil(parseInt((new Date(item.endTime)-new Date())/(1000*60*60*24))),
+            oddTime:6,
+            activityList:[],
+        }
+    },
+    created(){
+        this.loadActivity();
+    },
+    methods:{
+        loadActivity(){
+            this.activityList = [
                 {title:"周二会员日 四大福利集结等你",img:"../../assets/activity/activity/1.jpg",Pnumber:47206,endTime:"2020-3-31",url:"https://act-routine-web-prd-mx.wandacinemas.com/static/?activityid=624"},
-            ],
+                {title:"周二会员日 四大福利集结等你",img:"../../assets/activity/activity/1.jpg",Pnumber:47206,endTime:"2019-9-31",url:"https://act-routine-web-prd-mx.wandacinemas.com/static/?activityid=624"},
+                {title:"周二会员日 四大福利集结等你",img:"../../assets/activity/activity/1.jpg",Pnumber:47206,endTime:"2020-3-31",url:"https://act-routine-web-prd-mx.wandacinemas.com/static/?activityid=624"},
+            ]
+            console.log(Math.ceil(parseInt(new Date(this.activityList[0].endTime)-new Date()/(1000*60*60*24))));
+            console.log(Math.ceil(parseInt((new Date(this.activityList[0].endTime)-new Date())/(1000*60*60*24))));
         }
     },
 }

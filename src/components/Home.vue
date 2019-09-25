@@ -6,7 +6,7 @@
                     <filmheader :isPosition="isPosition" @changePosition="changePosition"></filmheader>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="activity">
-                    <!-- <activity></activity> -->
+                    <activity></activity>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="shop">
                     <shop></shop>

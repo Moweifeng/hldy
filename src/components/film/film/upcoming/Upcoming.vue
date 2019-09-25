@@ -170,4 +170,44 @@
   .iconfont.icon-love{
     color:#f00;
   }
+      .gettingImg{
+        width: 80px;
+        margin: 20px 0;
+    }
+    div.filmListText{
+        width: 150px;
+        margin-left: 10px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+    }
+    .filmListText p{
+        font-size:11px;
+    }
+    p.filmListText-title{
+        font-size:14px;
+        color:#000;
+    }
+    div.film-type-icon{
+        display: flex;
+        height: 20px;
+    }
+    p.iconfont{
+        font-size:18px;
+        margin-bottom:0; 
+    }
+    .getfilm{
+        position: absolute;
+        height: 30px;
+        background: #dbb177;
+        top:40%;
+        right: 5%;
+        font-size:11px;
+        color:#fff;
+        border-radius: 30px;
+    }
+    .getfilm:disabled{
+        background: #8997c2;
+    }
 </style>

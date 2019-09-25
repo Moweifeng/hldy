@@ -66,7 +66,7 @@
                 </div>
             </div>
             <div class="me-width" v-else>
-                <!-- <login></login> -->
+                <login></login>
             </div>
     </transition>
     </div>
@@ -78,7 +78,7 @@ export default {
         return {
             grow:"还需195成长值升级",
             phone:13123456789,
-            isLogin:false,
+            isLogin:true,
         }
     },
     components:{
