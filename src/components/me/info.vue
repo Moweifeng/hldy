@@ -5,15 +5,15 @@
             <span>消息中心</span>
         </div>
         <mt-cell title="系统消息">
-            <img src="../img/icon/ic_msg_center_system.png" slot="icon">
+            <img src="../assets/icon/ic_msg_center_system.png" slot="icon">
             <span>暂无新的系统消息</span>
         </mt-cell>
         <mt-cell title="活动广播">
-            <img src="../img/icon/ic_msg_center_activity.png" slot="icon">
+            <img src="../assets/icon/ic_msg_center_activity.png" slot="icon">
             <span>有新的活动广播</span>
         </mt-cell>
         <mt-cell title="用户通知">
-            <img src="../img/icon/ic_msg_center_user.png" slot="icon">
+            <img src="../assets/icon/ic_msg_center_user.png" slot="icon">
             <span>暂无新的用户通知</span>
         </mt-cell>
     </div>

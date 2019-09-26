@@ -2,34 +2,36 @@
     <div>
         <div class="shop-header">
             <span>广州欢乐影城万胜围店</span>
-            <img src="../../img/icon/center_drop_icon.png" class="shop-icon">
+            <img src="../../assets/icon/center_drop_icon.png" class="shop-icon">
         </div>
     <mt-swipe :auto="3000" class="shop-banner">
         <mt-swipe-item>
-            <img src="../../img/5.jpg" class="banner-img">
+            <img src="../../assets/shop/5.jpg" class="banner-img">
         </mt-swipe-item>
         <mt-swipe-item>
-            <img src="../../img/6.jpg" class="banner-img">
+            <img src="../../assets/shop/6.jpg" class="banner-img">
         </mt-swipe-item>
         <mt-swipe-item>
-            <img src="../../img/7.jpg" class="banner-img">
+            <img src="../../assets/shop/7.jpg" class="banner-img">
         </mt-swipe-item>
     </mt-swipe>
-    <div class="setMeals" v-for="item in 3">
-        <div class="setMealTitle">
-            <p>卖品套餐</p>
-            <p>查看全部</p>
-        </div>
-        <div class="setMealList" >
-            <div class="setMeal">
-                <img src="./../../img/17.jpg">
-                <div>
-                    <span>￥49</span>
-                    <img src="./../../img/icon/ic_add_to_cart.png">
+        <div class="setMeals">
+            <div class="setMealTitle">
+                <p>卖品套餐</p>
+                <p>查看全部 <span class="iconfont icon-right"></span></p>
+            </div>
+            <div class="setMealList">
+                <div  v-for="item in 3">
+                    <div class="setMeal">
+                        <img src="./../../assets/shop/17.jpg">
+                        <div>
+                            <span>￥49</span>
+                            <img src="./../../assets/icon/ic_add_to_cart.png">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </template>
 <script>
@@ -61,6 +63,24 @@ export default {
     .setMealTitle{
         display: flex;
         justify-content: space-between;
-        padding: 5px;
+        padding:10px;
+    }
+    .setMealTitle p{
+        font-size: 16px;
+    }
+    .setMealList{
+        display: flex;
+        padding: 0 5%;
+        background: #fff;
+    }
+    .setMeal>img{
+        width: 100%;
+    }
+    .setMeal{
+        margin: 0 10%;
+    }
+    .setMeal>div{
+        display: flex;
+        justify-content: space-between;
     }
 </style>

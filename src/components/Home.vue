@@ -3,7 +3,7 @@
         <div v-if="!isPosition">
             <mt-tab-container v-model="active">
                 <mt-tab-container-item id="film">
-                    <filmheader :isPosition="isPosition" @changePosition="changePosition"></filmheader>
+                    <filmheader :isPosition="isPosition" @changePosition="changePosition" :beforeCity="beforeCity"></filmheader>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="activity">
                     <activity></activity>
@@ -35,7 +35,7 @@
             </mt-tabbar>
         </div>
         <div v-else>
-            <position @changePosition="changePosition"></position>
+            <position @changePosition="changePosition" @city="getCity($event)"></position>
         </div>
     </transition>
 </template>
@@ -57,11 +57,16 @@ export default {
         return{
             active:"film",
             isPosition:false,
+            beforeCity:'广州'
         }
     },
     methods:{
         changePosition() {
             this.isPosition= !this.isPosition;
+        },
+        getCity(val) {
+            this.beforeCity = val;
+            console.log(this.beforeCity);
         }
     },
 }

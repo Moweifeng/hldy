@@ -3,7 +3,7 @@
         <div class="upcoming">
         <p>人气榜单</p>
             <div class="rowfilmlist" ref="tab">
-              <div>
+              <div :style="'width:'+scrollWidth+'px'">
                 <div v-for="(item,index) of uplists" :key="index" class="rowfilm">
                   <span v-text="'预售'" class="rowfilmSpan"></span>
                   <span v-text="item.collect_count+' 人想看'"></span>
@@ -37,7 +37,7 @@
                     :Math.random<0.6?'icon-jumu'
                     :Math.random()<0.9?'ico-imax icon-jumu':''" class="iconfont"></p>
                 </div>
-                <mt-button class="getfilm" :disabled="Math.random()<0.2?disabled=true:disabled=false" v-text="disabled?'预售':'购票'" ></mt-button>
+                <mt-button class="getfilm" disabled v-text="'预售'"></mt-button>
             </div>
         </mt-cell>
 
@@ -53,6 +53,7 @@
       return {
         uplists:[],
         islove:false,
+        scrollWidth:0,
       }
     },
     created() {
@@ -72,14 +73,6 @@
           this.islove = false;
         }
       },
-      _initScroll() {
-        var BScroll =this.BScroll;
-        this.tab = new BScroll(this.$refs.tab,{
-            click:true,
-            scrollX:true,
-            scrollY:false
-        })
-      },
       loaduplist(){
         var pno=0;
         this.pno++;
@@ -91,13 +84,23 @@
         this.$jsonp(url).then(json => {
             // Success.
             this.uplists =json.subjects;
-            console.log(this.uplists);
+            this.scrollWidth = this.uplists.length*90;
+            console.log(this.uplists.length,this.scrollWidth);
         }).catch(err => {
             // Failed.
             this.$toast({
                 message:'加载失败',
                 duration:5000
             })
+        })
+      },
+      _initScroll() {
+        var BScroll =this.BScroll;
+        this.tab = new BScroll(this.$refs.tab,{
+            click:true,
+            scrollX:true,
+            scrollY:false,
+            stopPropagation:true,
         })
       },
     },
@@ -120,7 +123,6 @@
   }
   .rowfilmlist>div{
     display: flex;
-    width: 300%;
   }
   .rowfilm{
     width: 80px;

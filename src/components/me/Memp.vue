@@ -4,14 +4,14 @@
             <div class="me-width" v-if="isLogin">
                 <div class="header">
                     <div class="header-item-icon">
-                        <img src="../../img/icon/usernotice.png" class="icon1" @click="info">
-                        <img src="../../img/icon/ic_edit.png" class="icon2" @click="meEdit">
+                        <img src="../../assets/icon/usernotice.png" class="icon1" @click="info">
+                        <img src="../../assets/icon/ic_edit.png" class="icon2" @click="meEdit">
                     </div>
                     <div class="header-item">
                         <div class="header-headItem">
                             <div class="headItem-h">
-                                <img src="../../img/icon/pic_me_portrait_default.png" class="headItem-icon1">
-                                <img src="../../img/icon/ic_crown.png" class="headItem-icon2">
+                                <img src="../../assets/icon/pic_me_portrait_default.png" class="headItem-icon1">
+                                <img src="../../assets/icon/ic_crown.png" class="headItem-icon2">
                                 
                                 <div class="headItem-emp1"></div>
                                 <div class="headItem-empText">&nbsp;乐影迷注册会员</div>
@@ -21,7 +21,7 @@
                                 <p class="headItem-p">欢乐影迷</p>
                                 <p v-text="phone"></p>
                             </div>
-                            <div class="headItem-right"  @click="login"><img src="../../img/icon/ic_right_arrow.png"></div>
+                            <div class="headItem-right"  @click="login"><img src="../../assets/icon/ic_right_arrow.png"></div>
                         </div>
                     </div>
                 </div>

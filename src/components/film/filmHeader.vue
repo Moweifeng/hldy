@@ -2,8 +2,8 @@
     <div>
             <div class="homeHeader">
                 <div class="landmark" @click="seat">
-                    <span>广州</span>
-                    <img src="../../img/icon/center_drop_icon.png">
+                    <span v-text="beforeCity"></span>
+                    <img src="../../assets/icon/center_drop_icon.png">
                 </div>
                 <div class="homeNav">
                     <div class="isSelected" @click="selected($event)" id="film">影片</div>
@@ -30,7 +30,10 @@ export default {
             pno:0   //页码
         }
     },
-    props:['isPosition'],
+    props:[
+        'isPosition',
+        'beforeCity'
+    ],
     components:{
         "film":Film,
         "cinema":Cinema,
@@ -52,7 +55,7 @@ export default {
             var url = " http://127.0.0.1:8080/carousel";
             this.axios.get(url).then(res=>{
                 this.carouselImgs = res.data.data;
-                //console.log(this.carouselImgs)
+                console.log(this.carouselImgs)
             });
         },
         // loadCinema(){

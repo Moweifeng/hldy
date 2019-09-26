@@ -34,6 +34,15 @@ server.use(session({
 //7 配置静态目录
 server.use(express.static("public"))
 
+//城市列表
+server.get("/citylist",(req,res)=>{
+    var sql = "SELECT * FROM hldy_citylist";
+    pool.query(sql,[],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,msg:"查询成功",data:result});
+    })
+})
+
 //轮播图
 server.get("/carousel",(req,res)=>{
     var sql = "SELECT * FROM hldy_index_carousel";

@@ -1,13 +1,12 @@
 <template>
     <div>
-        <swiper :options="swiperOption">
-        　　<swiper-slide  v-for="(item,index) of carouselImgs" :key="index" >
-                <router-link to="#">
+        <div class="swiper">
+            <mt-swipe :auto="3000">
+                <mt-swipe-item v-for="(item,index) of carouselImgs" :key="index">
                     <img :src="'http://127.0.0.1:8080/'+item.img" class="carouselImg">
-                </router-link>
-            </swiper-slide>
-        　　<div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
+                </mt-swipe-item>
+            </mt-swipe>
+        </div>
         <div>
             <div>
                 <mt-navbar v-model="selected" class="indexFilmList">
@@ -38,18 +37,6 @@ import Upcoming from "./upcoming/Upcoming"
 export default {
     data(){
         return{
-            swiperOption: {
-            　　pagination: {
-            　　　　 el: '.swiper-pagination',
-            　　　　 clickable: true, // 允许点击小圆点跳转
-            　　},
-            　　autoplay: {
-            　　　　delay: 3000,
-            　　　　disableOnInteraction: false // 手动切换之后继续自动轮播
-            　　},
-                loop: true,
-                slidesPerView:1,
-            },
             selected:"getting",
         }
     },
@@ -66,12 +53,11 @@ export default {
     .carouselImg{
         width: 100%;
     }
+    .swiper{
+        height: 200px;
+    }
 </style>
 <style>
-    .swiper-wrapper{
-        display: flex;
-        width: 600%;
-    }
     .indexFilmList .mint-button--normal{
         width: 100%;
     }

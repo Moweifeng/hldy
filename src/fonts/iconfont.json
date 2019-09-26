@@ -13,6 +13,20 @@
       "unicode_decimal": 59162
     },
     {
+      "icon_id": "1333737",
+      "name": "yanjing",
+      "font_class": "yanjing",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "3437196",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
       "icon_id": "5203327",
       "name": "方向-左",
       "font_class": "zuo",
@@ -25,6 +39,13 @@
       "font_class": "nolove",
       "unicode": "e600",
       "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9014862",
+      "name": "htb－Arrow right02",
+      "font_class": "right",
+      "unicode": "e602",
+      "unicode_decimal": 58882
     },
     {
       "icon_id": "10814061",
