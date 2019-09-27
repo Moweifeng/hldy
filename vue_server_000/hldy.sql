@@ -22,10 +22,25 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
+USE hldy;
+
+-- 表的结构 `tour_user`
+
+DROP TABLE IF EXISTS `hldy_user`;
+
+CREATE TABLE `hldy_user` (
+  `uid` int(10) NOT NULL COMMENT '用户编号',
+  `username` varchar(255) NOT NULL COMMENT '用户姓名',
+  `userpassword` int(255) NOT NULL COMMENT '用户密码',
+  `sex` int(2) DEFAULT NULL COMMENT '性别',
+  `birthday` date DEFAULT NULL COMMENT '用户生日',
+  `phone` varchar(255) DEFAULT NULL COMMENT '用户手机',
+  `age` int(10) DEFAULT NULL COMMENT '用户年龄'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- 表的结构 `hldy_cityList`
 --
-USE hldy;
 
 DROP TABLE IF EXISTS `hldy_cityList`;
 

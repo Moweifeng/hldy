@@ -109,23 +109,25 @@ server.get("/login",(req,res)=>{
     var uname=req.query.uname;
     var upwd=req.query.upwd;
     //6.2创建sql
-    var sql="SELECT id FROM xz_login";
-    sql+=" WHERE uname = ? AND upwd = md5(?)";
-    //6.3执行sql语句并且获取返回结果
-    pool.query(sql,[uname,upwd],(err,result)=>{
-        //6.4判断登录是否成功
-        if(err) throw err;
-        //6.5将结果返回网页
-        if(result.length==0){
-            res.send({code:-1,msg:"用户名或密码有误"})
-        }else{
-            //获取当前登录用户id
-            var id =result[0].id;
-            //将用户id保存session对象中
-            req.session.uid = id;
-            res.send({code:1,msg:"登录成功"});
-        }
-    });
+    if(uname===undefined&&!upwd===undefined){
+        var sql="SELECT id FROM hldy_user";
+        sql+=" WHERE uname = ? AND upwd = md5(?)";
+        //6.3执行sql语句并且获取返回结果
+        pool.query(sql,[uname,upwd],(err,result)=>{
+            //6.4判断登录是否成功
+            if(err) throw err;
+            //6.5将结果返回网页
+            if(result.length==0){
+                res.send({code:-1,msg:"用户名或密码有误"})
+            }else{
+                //获取当前登录用户id
+                var id =result[0].id;
+                //将用户id保存session对象中
+                req.session.uid = id;
+                res.send({code:1,msg:"登录成功"});
+            }
+        });
+    }
 })
 //二 创建商品列表的分页
 // 1.接收客户请求  /product GET
