@@ -14,10 +14,13 @@ import 'mint-ui/lib/style.css'
 import "./fonts/iconfont.css"
 import axios from "axios"
 import 'vant/lib/index.css';
+import qs from 'qs'
 //配置请求时保存session信息
 // axios.defaults.withCredentials=true;
 //配置请求基础路径
 //axios.defaults.baseURL="http://127.0.0.1:8080/"
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+Vue.prototype.qs = qs;
 // 注册axios
 Vue.prototype.axios = axios;
 // axios.defaults.baseURL = 'http://api.douban.com/v2/'

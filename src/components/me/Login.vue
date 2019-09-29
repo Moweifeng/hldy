@@ -5,25 +5,31 @@
       <router-link to slot="left">登录注册</router-link>
     </mt-header>
     <div class="loginicon">
-      <img src="../../assets/icon/login.png">
+      <img src="../../assets/icon/login.png" />
     </div>
     <div class="phone-form" v-if="select=='login'">
-    <mt-field placeholder="请输入账号" v-model="uname" class="phone" id="Lname"></mt-field>
-    <mt-field placeholder="请输入密码" v-model="upwd" id="Lpwd"></mt-field>
-    <div class="reg" @click="isSelect">去注册</div>
-    <mt-button class="login-button" @click="login">登录验证</mt-button>
+      <mt-field placeholder="请输入账号" v-model="uname" class="phone" id="Lname"></mt-field>
+      <mt-field placeholder="请输入密码" v-model="upwd" id="Lpwd"></mt-field>
+      <div class="reg" @click="isSelect">去注册</div>
+      <mt-button class="login-button" @click="login">登录验证</mt-button>
     </div>
     <div class="phone-form" v-else>
-    <mt-field placeholder="请输入新的账号" v-model="uname" class="phone" id="Rname"></mt-field>
-    <mt-field placeholder="请输入新的密码" v-model="upwd" id="Rpwd"></mt-field>
-    <mt-field placeholder="请再次密码" v-model="upwd" id="Rpwd2"></mt-field>
-    <div class="reg" @click="isSelect">去登录</div>
-    <mt-button class="login-button" @click="reg">注册</mt-button>
+      <mt-field placeholder="请输入新的账号" class="phone" v-model="uname" id="Rname"></mt-field>
+      <mt-field placeholder="请输入新的密码" id="Rpwd1" v-model="upwd" type="password"></mt-field>
+      <mt-field placeholder="请再次密码" id="Rpwd2" v-model="upwd2" type="password"></mt-field>
+      <div class="reg" @click="isSelect">去登录</div>
+      <mt-button class="login-button" @click="reg">注册</mt-button>
     </div>
     <div class="login-icon">
-        <div><img src="../../assets/icon/weibo.png">微博登录</div>
-        <div><img src="../../assets/icon/qq.png">QQ登录</div>
-        <div><img src="../../assets/icon/weixin.png">微信登录</div> 
+      <div>
+        <img src="../../assets/icon/weibo.png" />微博登录
+      </div>
+      <div>
+        <img src="../../assets/icon/qq.png" />QQ登录
+      </div>
+      <div>
+        <img src="../../assets/icon/weixin.png" />微信登录
+      </div>
     </div>
   </div>
 </template>
@@ -31,76 +37,143 @@
 export default {
   data() {
     return {
-      uname:"",
-      upwd:"",
-      select:"login",
+      uname: "",
+      upwd: "",
+      upwd2: "",
+      select: "login"
     };
   },
-  props:[
-    "isLogin"
-  ],
-  methods:{
-    back(){
-      console.log(123)
+  props: ["isLogin"],
+  methods: {
+    back() {
+      console.log(123);
       this.$router.go(-1);
     },
-    isSelect(){
-      if(this.select=='login'){
-        this.select='reg';
-      }else{
-        this.select='login';
+    isSelect() {
+      if (this.select == "login") {
+        this.select = "reg";
+      } else {
+        this.select = "login";
       }
     },
-    reg(){
-
+    codeTest(name, pwd) {
+      return new Promise(door => {
+        if (name == "" || name === undefined) {
+          this.$messagebox("消息", "请输入账号!");
+          console.log(0);
+          return;
+        }
+        if (pwd == "" || pwd === undefined) {
+          this.$messagebox("消息", "请输入密码!");
+          console.log(1);
+          return;
+        }
+        door();
+      });
     },
-    login(){
+    reg() {
       var uname = this.uname;
       var upwd = this.upwd;
-      console.log(uname,upwd);
-      if(uname==""||uname===undefined){
-        //var 
-        this.$messagebox("消息","请输入账号!");
-        //document.getElementById("Lname").focus()
-          //this.$refs.val.focus()
-        console.log(document.getElementById("Lname"));
-      }else if(upwd===""||upwd===undefined){
-        console.log(0);
-        this.$messagebox("消息","请输入密码!");
-      }else{
-        var regName = /^[a-z0-9]{6,16}$/i;
-        var regPwd = /^[a-z0-9]{8,16}$/i;
-        if(!regName.test(uname)){
-          this.$toast("用户名格式为6-16位字母或数字");
-          return;
-        }
-        if(!regPwd.test(upwd)){
-          this.$toast("密码格式为8-16位字母或数字");
-          return;
-        }
-        var url = `http://127.0.0.1:8080/login`;
-        var obj={uname:uname,upwd:upwd};
-        console.log(obj);
-        this.axios.get(url,{params:obj})
-        .then(res=>{
-          var code = res.data.data;
-          console.log(code);
-          if(code==-1){
-            this.$messagebox("消息","登录成功")
-            .then(()=>{
-              this.$router.go(-1);
-            }).catch(()=>{
-              this.$messagebox("消息","账号或密码错误！")
-          })
+      var upwd2 = this.upwd2;
+      var regName = /^[a-z][a-z0-9]{3,15}$/i;
+      var regPwd = /^[a-z0-9]{8,16}$/i;
+      this.codeTest(uname, upwd)
+        .then(() => {
+          if (upwd2 == "" || upwd2 === undefined) {
+            this.$messagebox("消息", "请再次输入密码！");
+            return;
           }
         })
-        .catch(()=>{
-              this.$messagebox("消息","账号或密码错误！")
-          })
-        console.log(1);
+        .then(() => {
+          if (!regName.test(uname)) {
+            this.$messagebox(
+              "消息",
+              "用户名需为首字母开头的4-16位字母或数字！"
+            );
+            console.log(2);
+            return;
+          }
+          if (!regPwd.test(upwd)) {
+            this.$messagebox("消息", "密码为8-16位字母或数字！");
+            console.log(3);
+            return;
+          }
+          if (!upwd == upwd2) {
+            this.$messagebox("消息", "两次输入密码不一致，请重新输入！");
+            console.log(4);
+            return;
+          }
+          var obj = { uname: uname, upwd: upwd };
+          console.log(obj);
+          var url = "http://127.0.0.1:8080/reg";
+          // this.axios({
+          //   method:'post',
+          //   url:url,
+          //   data:obj,
+          // })
+          this.axios({
+            method: "POST",
+            headers: { "content-type": "application/x-www-form-urlencoded" },
+            data: this.qs.stringify(obj),
+            url
+          }).then(res => {
+            var code = res.data.code;
+            console.log(code);
+            if (code == 200) {
+              this.$messagebox("消息", "注册成功！");
+              console.log(5);
+              this.$router.push("/login");
+            } else if (code == 400) {
+              this.$messagebox("消息", "用户已存在！");
+              console.log(6);
+            } else {
+              this.$messagebox("消息", "注册失败！");
+              console.log(7);
+            }
+          });
+        });
+    },
+    login() {
+      var uname = this.uname;
+      var upwd = this.upwd;
+      this.codeTest(uname, upwd);
+      var regName = /^[a-z][a-z0-9]{3,15}$/i;
+      var regPwd = /^[a-z0-9]{8,16}$/i;
+      if (!regName.test(uname)) {
+        this.$messagebox("消息", "用户名需为首字母开头的4-16位字母或数字！");
+        console.log(8);
+        return;
       }
+      if (!regPwd.test(upwd)) {
+        this.$messagebox("消息", "密码为8-16位字母或数字！");
+        console.log(9);
+        return;
+      }
+      var url = `http://127.0.0.1:8080/login`;
+      var obj = { uname: uname, upwd: upwd };
+      console.log(obj);
+      this.axios({
+        method: "post",
+        headers: { "content-type": "application/x-www-form-urlencoded" },
+        url: url,
+        data: this.qs.stringify(obj)
+      }).then(res => {
+        console.log(1);
+        var code = res.data.code;
+        console.log(code);
+        if(code==200){
+          this.$messagebox("消息","登录成功!")
+          .then(()=>{
+            this.$router.go(-1);
+          })
+        }else{
+          this.$messagebox("消息","用户名或密码有误!");
+          this.uname = "";
+          this.upwd = "";
+        }
+      });
     }
-  },
+  }
 };
 </script>
 <style scoped>
@@ -114,34 +187,34 @@ export default {
   background-color: #fff;
   border-bottom: 1px solid #aaa;
 }
-.loginicon{
+.loginicon {
   padding: 20px 0;
 }
 .icon-zuo {
   padding-right: 15px;
 }
-.login-button{
+.login-button {
   font-size: 2rem;
   color: #fff;
   width: 97.5%;
   background-color: #d67e36;
 }
-.login-icon{
-    display: flex;
-    justify-content: space-around;
-    padding: 50px 20px;
-    align-items: flex-end;
+.login-icon {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 20px;
+  align-items: flex-end;
 }
-.reg{
+.reg {
   font-size: 14px;
   margin-bottom: 10px;
   width: 70px;
 }
-.login-icon div{
+.login-icon div {
   width: 20%;
   font-size: 14px;
 }
-.login-icon img{
+.login-icon img {
   width: 100%;
 }
 </style>

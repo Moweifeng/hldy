@@ -1,6 +1,6 @@
 <template>
     <div>
-        <mt-cell v-for="(item,index) of lists" :key="index" class="gettingCell">
+        <mt-cell v-for="(item,index) of lists" :key="index" class="gettingCell" @click.native="skip">
             <img :src="'https://images.weserv.nl/?url='+item.images.medium" class="gettingImg" slot="icon">
             <div class="filmListText">
                 <p v-text="item.title" class="filmListText-title"></p>
@@ -58,7 +58,10 @@ export default {
                     duration:5000
                 })
             })
-        }
+        },
+        skip(){
+            this.$router.push("/getdetail");
+        },
     },
 }
 </script>
