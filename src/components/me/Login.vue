@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <mt-header fixed class="header">
-      <router-link to="/home" slot="left" class="iconfont icon-zuo"></router-link>
+      <router-link to="/home" @click="back" slot="left" class="iconfont icon-zuo"></router-link>
       <router-link to slot="left">登录注册</router-link>
     </mt-header>
     <div class="loginicon">
@@ -9,7 +9,7 @@
     </div>
     <div class="phone-form" v-if="select=='login'">
       <mt-field placeholder="请输入账号" v-model="uname" class="phone" id="Lname"></mt-field>
-      <mt-field placeholder="请输入密码" v-model="upwd" id="Lpwd"></mt-field>
+      <mt-field placeholder="请输入密码" v-model="upwd" id="Lpwd" type="password"></mt-field>
       <div class="reg" @click="isSelect">去注册</div>
       <mt-button class="login-button" @click="login">登录验证</mt-button>
     </div>
@@ -46,7 +46,7 @@ export default {
   props: ["isLogin"],
   methods: {
     back() {
-      console.log(123);
+      console.log(this.$router.go);
       this.$router.go(-1);
     },
     isSelect() {
@@ -60,12 +60,10 @@ export default {
       return new Promise(door => {
         if (name == "" || name === undefined) {
           this.$messagebox("消息", "请输入账号!");
-          console.log(0);
           return;
         }
         if (pwd == "" || pwd === undefined) {
           this.$messagebox("消息", "请输入密码!");
-          console.log(1);
           return;
         }
         door();
@@ -90,17 +88,14 @@ export default {
               "消息",
               "用户名需为首字母开头的4-16位字母或数字！"
             );
-            console.log(2);
             return;
           }
           if (!regPwd.test(upwd)) {
             this.$messagebox("消息", "密码为8-16位字母或数字！");
-            console.log(3);
             return;
           }
           if (!upwd == upwd2) {
             this.$messagebox("消息", "两次输入密码不一致，请重新输入！");
-            console.log(4);
             return;
           }
           var obj = { uname: uname, upwd: upwd };
@@ -121,14 +116,11 @@ export default {
             console.log(code);
             if (code == 200) {
               this.$messagebox("消息", "注册成功！");
-              console.log(5);
               this.$router.push("/login");
             } else if (code == 400) {
               this.$messagebox("消息", "用户已存在！");
-              console.log(6);
             } else {
               this.$messagebox("消息", "注册失败！");
-              console.log(7);
             }
           });
         });
@@ -141,31 +133,29 @@ export default {
       var regPwd = /^[a-z0-9]{8,16}$/i;
       if (!regName.test(uname)) {
         this.$messagebox("消息", "用户名需为首字母开头的4-16位字母或数字！");
-        console.log(8);
         return;
       }
       if (!regPwd.test(upwd)) {
         this.$messagebox("消息", "密码为8-16位字母或数字！");
-        console.log(9);
         return;
       }
       var url = `http://127.0.0.1:8080/login`;
       var obj = { uname: uname, upwd: upwd };
-      console.log(obj);
       this.axios({
         method: "post",
         headers: { "content-type": "application/x-www-form-urlencoded" },
         url: url,
         data: this.qs.stringify(obj)
       }).then(res => {
-        console.log(1);
         var code = res.data.code;
         console.log(code);
         if(code==200){
           this.$messagebox("消息","登录成功!")
           .then(()=>{
+            
             this.$router.go(-1);
           })
+          console.log(res.data.data);
         }else{
           this.$messagebox("消息","用户名或密码有误!");
           this.uname = "";

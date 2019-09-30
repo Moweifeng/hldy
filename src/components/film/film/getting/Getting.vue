@@ -1,6 +1,6 @@
 <template>
     <div>
-        <mt-cell v-for="(item,index) of lists" :key="index" class="gettingCell" @click.native="skip">
+        <mt-cell v-for="(item,index) of lists" :key="index" class="gettingCell" @click.native="skip(item.id)" :data-lid="item.id">
             <img :src="'https://images.weserv.nl/?url='+item.images.medium" class="gettingImg" slot="icon">
             <div class="filmListText">
                 <p v-text="item.title" class="filmListText-title"></p>
@@ -27,6 +27,7 @@
     </div>
 </template>
 <script>
+import getDetail from "./getdetail"
 export default {
     data(){
         return{
@@ -38,7 +39,6 @@ export default {
         this.$nextTick(
              this.loadfilmlist()
         )
-       
     },
     methods:{
         loadfilmlist(){
@@ -49,8 +49,7 @@ export default {
             // console.log(url);
             var obj = {start:start,count:count};
             this.$jsonp(url).then(json => {
-                // Success.
-                this.lists =json.subjects;
+                this.lists = json.subjects;
             }).catch(err => {
                 // Failed.
                 this.$toast({
@@ -59,8 +58,8 @@ export default {
                 })
             })
         },
-        skip(){
-            this.$router.push("/getdetail");
+        skip(mid){
+            this.$router.push(`/getdetail/${mid}`);
         },
     },
 }

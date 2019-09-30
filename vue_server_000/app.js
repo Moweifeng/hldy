@@ -62,6 +62,17 @@ server.get("/cinema", (req, res) => {
         res.send({ code: 1, msg: "查询成功", data: result });
     });
 })
+server.get("/mep",(req,res) => {
+    var uid = req.session.uid;
+    console.log(uid);
+    if(uid===undefined){
+        res.send({code:-1,msg:"请先登录"});
+        return;
+    }else{
+        res.send({code:1});
+    }
+
+})
 
 //电影院列表
 // 1.接收客户请求  /product GET
@@ -111,7 +122,6 @@ server.get("/filmList", (req, res) => {
 server.post("/login", (req, res) => {
     //6.1接收网页传递数据 用户名和密码
     var obj = req.body;
-    console.log(obj)
     if (!obj.uname) {
         res.send({ code: 401, msg: 'uname required' });
         return;
@@ -121,7 +131,7 @@ server.post("/login", (req, res) => {
         return;
     }
     //6.2创建sql
-    var sql = "SELECT id FROM hldy_user WHERE uname = ? AND upwd = md5(?)";
+    var sql = "SELECT * FROM hldy_user WHERE uname = ? AND upwd = ?";
     //6.3执行sql语句并且获取返回结果
     pool.query(sql, [obj.uname, obj.upwd], (err, result) => {
         //6.4判断登录是否成功
@@ -131,10 +141,10 @@ server.post("/login", (req, res) => {
             res.send({ code: 201, msg: "用户名或密码有误" })
         } else {
             //获取当前登录用户id
-            var id = result[0].id;
+            var id = result[0].uid;
             //将用户id保存session对象中
             req.session.uid = id;
-            res.send({ code: 200, msg: "登录成功" });
+            res.send({ code: 200, msg: "登录成功",data:req.session.uid});
         }
     });
 })
@@ -173,7 +183,7 @@ server.post("/reg", (req, res) => {
         var uname = obj.uname;
         var upwd =obj.upwd;
         console.log(uname,upwd);
-        var sql = "INSERT INTO hldy_user(uname,upwd) VALUES(? AND md5(?))";
+        var sql = "INSERT INTO hldy_user SET ?";
         pool.query(sql,[uname,upwd],(err, result) => {
             if (err) throw err;
             if (result.affectedRows > 0) {

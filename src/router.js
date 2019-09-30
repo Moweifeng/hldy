@@ -9,7 +9,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {path:'/Home',component:Home},
-    {path:'/getDetail',component:getDetail},
+    {path:'/getDetail/:id',name:'getDetail',component:getDetail},
     {path:'/Login',component:Login},
     {path:'/Cart',component:Cart},
     {path:'/',component:HelloContainer},
