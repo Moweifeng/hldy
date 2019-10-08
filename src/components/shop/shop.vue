@@ -53,11 +53,24 @@
                 <p>积分商城</p>
             </div>
         </div>
+        <div class="carticon" @click="getcart">
+            <div v-text="0"></div>
+            <img src="../../assets/icon/shop-cart.png">
+        </div>
     </div>
 </template>
 <script>
 export default {
-    
+    data(){
+        return{
+            cartNum:0,
+        }
+    },
+    methods:{
+        getcart(){
+            this.$router.push("/shopCart");
+        },
+    },
 }
 </script>
 <style scoped>
@@ -169,5 +182,29 @@ export default {
     .integralShop p{
         font-size: 24px;
         color: #fff;
+    }
+    .carticon{
+        background-color: #8f8f94;
+        border-radius: 50%;
+        position: fixed;
+        right: 10px;
+        bottom: 65px;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+    }
+    .carticon div{
+        width: 20px; 
+        height: 20px;
+        background-color: #dbb177;
+        border-radius: 50%;
+        position: absolute;
+        right: 0;
+        color: #fff;
+        font-size: 10px;
+    }
+    .carticon img{
+        width: 30px;
+        margin: 10px;
     }
 </style>

@@ -13,6 +13,13 @@
       "unicode_decimal": 58893
     },
     {
+      "icon_id": "150782",
+      "name": "想看的电影",
+      "font_class": "xkdy",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
       "icon_id": "609244",
       "name": "中国巨幕",
       "font_class": "jumu",
@@ -55,11 +62,32 @@
       "unicode_decimal": 58880
     },
     {
+      "icon_id": "6746443",
+      "name": "上",
+      "font_class": "shang",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
       "icon_id": "8093906",
       "name": "分享",
       "font_class": "fenxiang",
       "unicode": "e684",
       "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "8440988",
+      "name": "评分",
+      "font_class": "pingfen",
+      "unicode": "e703",
+      "unicode_decimal": 59139
+    },
+    {
+      "icon_id": "8780712",
+      "name": "下",
+      "font_class": "down",
+      "unicode": "e603",
+      "unicode_decimal": 58883
     },
     {
       "icon_id": "9014862",

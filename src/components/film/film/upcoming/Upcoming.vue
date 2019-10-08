@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="upcoming">
-        <p>人气榜单</p>
-            <div class="rowfilmlist" ref="tab">
+          <p>人气榜单</p>
+          <div class="rowfilmlist" ref="tab">
               <div :style="'width:'+scrollWidth+'px'">
                 <div v-for="(item,index) of uplists" :key="index" class="rowfilm">
                   <span v-text="'预售'" class="rowfilmSpan"></span>
@@ -39,8 +39,7 @@
                 </div>
                 <mt-button class="getfilm" disabled v-text="'预售'"></mt-button>
             </div>
-        </mt-cell>
-
+          </mt-cell>
         </div>
     </div>
 </template>
@@ -152,6 +151,9 @@
     margin: 0;
     padding-top: 2px;
     height: 20px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
   .rowfilmContent{
     display: flex;
