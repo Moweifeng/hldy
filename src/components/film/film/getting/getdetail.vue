@@ -45,7 +45,7 @@
                 </h5>
                 <div>
                     <div>
-                        <a :href="'https://video.weserv.nl/?url='+detailList.blooper_urls[0]">
+                        <a :href="detailList.blooper_urls[0]">
                             <img :src="detailList.bloopers.length!=0?detailList.bloopers[0].small:require('../../../../assets/icon/novideo.jpg')" />
                             <img src="../../../../assets/icon/img_play.png" class="imgPlay">
                         </a>
